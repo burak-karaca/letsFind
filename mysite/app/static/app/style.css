@@ -1,0 +1,93 @@
+html{
+    font-size: 10px;
+}
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.input-field{
+    float: left;
+    padding: 2rem;
+    font-size: 20px;
+    margin-left:0;
+    background:#222222;
+    margin-right: 0;
+}
+.second-wrap{
+    font-size: 20px;
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 0;
+}
+.location{
+    font-size: 1.5rem;
+    padding: 2rem;
+    margin-left: 0.2rem;
+    width: 12rem;
+    border-radius: 5%;
+    border: 0;
+    padding-right: 0;
+
+}
+#search{
+    font-size: 1.5rem;
+    padding: 2rem;
+    width: 50rem;
+    border: 0;
+}
+#buton{
+    padding:1.9rem;
+    padding-right: 2.5rem;
+    padding-right: 2.5rem;
+    font-size: 1.5rem;
+    border-radius: 10%;
+    margin:0;
+}
+#button{
+    padding:1.9rem;
+    font-size: 1.5rem;
+    border-radius: 10%;
+    margin:0;
+}
+.dropdown-item{
+    font-size: 1.5rem;
+    padding: 2rem;
+    border: 0;
+}
+.list-group{
+    width: 100%;
+    height: 200px;
+    float: left;
+}
+.list-group-item img{
+    width: 150px;
+    height: 150px;
+}
+
+#item{
+    color: #222222;
+    font: 500 42px/46px "Dosis", sans-serif;
+    letter-spacing: 1px;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+#price{
+    font: 700 16px/26px "PT Sans",Helvetica,sans-serif;
+    color:#0442BF;
+}
+#link{
+    background-color: #222222;
+    font: 700 16px/26px "PT Sans",Helvetica,sans-serif;
+    height: auto;
+    letter-spacing: 0.4px;
+    padding: 9px 13px 7px;
+    text-transform: uppercase;
+    width: auto;
+    text-shadow: none;
+}
+#link:hover{
+    color: #222222;
+    background-color: white;
+    transition: 1s background-color;
+}
