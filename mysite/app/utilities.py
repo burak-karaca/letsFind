@@ -15,20 +15,16 @@ def fetch_data(data,minPrice,maxPrice):
    search = driver.find_element_by_name("q")
    search.send_keys(data)
    search.send_keys(Keys.RETURN)
+
    minim = driver.find_element_by_name("lower")
    minim.send_keys(minPrice)
    maxim =  driver.find_element_by_name("upper")
    maxim.send_keys(maxPrice)
-
    go = driver.find_element_by_class_name("sh-dr__prs")
    go.click()
-
-
    clickPrices = driver.find_element_by_css_selector(".vkYnff")
    clickPrices.click()
-
    sortingPrices = driver.find_elements_by_css_selector(".kH0Dhc")
-
    sortPriceArray = []
    for d in sortingPrices:
       sortPriceArray.append(d)
