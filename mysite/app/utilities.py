@@ -14,29 +14,33 @@ def fetch_data(data,minPrice,maxPrice):
    search = driver.find_element_by_name("q")
    search.send_keys(data)
    search.send_keys(Keys.RETURN)
-   minim = driver.find_element_by_name("lower")
-   minim.send_keys(minPrice)
-   maxim =  driver.find_element_by_name("upper")
-   maxim.send_keys(maxPrice)
-   time.sleep(1)
-   go = driver.find_element_by_class_name("sh-dr__prs")
-   go.click()
-   clickPrices = driver.find_element_by_css_selector(".vkYnff")
-   clickPrices.click()
-   sortingPrices = driver.find_elements_by_css_selector(".kH0Dhc")
-   sortPriceArray = []
-   for d in sortingPrices:
-      sortPriceArray.append(d)
-   time.sleep(1)
-   lengthIf = len(sortPriceArray)
-   if lengthIf == 3:
-      sortPriceArray[1].click()
-   elif lengthIf == 4:
-      sortPriceArray[2].click()
+   # try:
+   #    minim = driver.find_element_by_name("lower")
+   #    minim.send_keys(minPrice)
+   #    maxim = driver.find_element_by_name("upper")
+   #    maxim.send_keys(maxPrice)
+   #    time.sleep(1)
+   #    go = driver.find_element_by_class_name("sh-dr__prs")
+   #    go.click()
+   # except:
+   #    pass
+   # try:
+   #    clickPrices = driver.find_element_by_css_selector(".vkYnff")
+   #    clickPrices.click()
+   #    sortingPrices = driver.find_elements_by_css_selector(".kH0Dhc")
+   #    sortPriceArray = []
+   #    for d in sortingPrices:
+   #       sortPriceArray.append(d)
+   #    time.sleep(1)
+   #    lengthIf = len(sortPriceArray)
+   #    if lengthIf == 3:
+   #       sortPriceArray[1].click()
+   #    elif lengthIf == 4:
+   #       sortPriceArray[2].click()
+   # except:
+   #    pass
 
-
    time.sleep(1)
-
    elements = [c.text for c in driver.find_elements_by_css_selector(".A2sOrd")]
    prices = [b.text for b in driver.find_elements_by_css_selector(".Nr22bf")]
    shop = [a.text for a in driver.find_elements_by_css_selector(".a3H7pd")]
@@ -51,15 +55,23 @@ def fetch_data(data,minPrice,maxPrice):
    if elementOutput == 0:
       elements = [cc.text for cc in driver.find_elements_by_css_selector(".xsRiS")]
       print(elements)
+   else:
+      print("nothing to show")
    if shopOutput == 0:
       shop = [aa.text for aa in driver.find_elements_by_css_selector(".shntl")]
       print(shop)
+   else:
+      print("nothing to show")
    if linksOutput == 0:
       links = [my_elemm.get_attribute("href") for my_elemm in driver.find_elements_by_css_selector("a.shntl")]
       print(links[0])
+   else:
+      print("nothing to show")
    if imagesOutput == 0:
       images = [img_srcc.get_attribute("src") for img_srcc in driver.find_elements_by_css_selector((".TL92Hc"))]
       print(images)
+   else:
+      print("nothing to show")
 
 
    x = list(zip(elements, prices, shop, links, images))

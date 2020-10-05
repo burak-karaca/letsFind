@@ -30,11 +30,7 @@ html{
     border:none;
     border-radius: 10px;
 }
-.navbar{
-    margin-bottom: 10px;
-    float: left;
-    text-align: center;
-}
+
 #search{
     font-size: 1.5rem;
     padding: 2rem;
@@ -50,7 +46,6 @@ html{
     border-radius: 10%;
     position: relative;
     top: 5px;
-
 }
 .fa-search{
     margin-left: 80%;
@@ -72,7 +67,6 @@ html{
     height: auto;
     float: left;
     margin-right: 2%;
-
 }
 #product{
     margin-bottom: 15px;
@@ -86,7 +80,6 @@ html{
     width: 150px;
     height: 150px;
 }
-
 #item{
     color: #222222;
     font: 350 14px/22px 'Fira Sans', sans-serif;;
@@ -96,36 +89,6 @@ html{
     position: absolute;
     top: 10%;
     left: 35%;
-}
-#price{
-    font: 700 16px/26px "PT Sans",Helvetica,sans-serif;
-    background-color:#222222;
-    position: absolute;
-    left: 35%;
-    top: 60%;
-}
-#link{
-    background-color:#F3A847 ;
-    font: 700 16px/26px "PT Sans",Helvetica,sans-serif;
-    position: absolute;
-    right: 0;
-    top: 60%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-}
-#price,#link{
-    border: none;
-    height: auto;
-    letter-spacing: 0.4px;
-    padding: 9px 13px 7px;
-    text-transform: uppercase;
-    width: auto;
-    text-shadow: none;
-}
-#link:hover,#price:hover{
-    color: #222222;
-    background-color: white;
-    transition: 1s background-color;
 }
 .nav-item{
     font-size: 20px;
@@ -137,10 +100,17 @@ html{
 .nav-item:first-child{
     margin-left: 2rem;
 }
-.navbar {
+.navbar-brand{
+    margin-top: 1%;
+    float: left;
+}
+.container {
+    margin: 0;
     position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translatex(-50%);
+    margin-right: -50%;
+    transform: translate(-50%, -90%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin-top: 25px;
+    float: left;
 }

@@ -16,7 +16,7 @@ def home(request):
             ls = fetch_data(txt,price1,price2)
             #print(ls)
             context = {'context': ls,'form': form}
-            return render(request, "app/index.html", context=context)
+            return render(request, "app/home.html", context=context)
     form = SearchForm()
     context = {'context':'', 'form': form}
     return render(request, "app/index.html", context=context)
