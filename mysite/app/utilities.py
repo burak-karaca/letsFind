@@ -11,15 +11,14 @@ def fetch_data(data,minPrice,maxPrice):
    driver = webdriver.Chrome(PATH)
 
    driver.get("https://www.google.com/shopping")
-
    search = driver.find_element_by_name("q")
    search.send_keys(data)
    search.send_keys(Keys.RETURN)
-
    minim = driver.find_element_by_name("lower")
    minim.send_keys(minPrice)
    maxim =  driver.find_element_by_name("upper")
    maxim.send_keys(maxPrice)
+   time.sleep(1)
    go = driver.find_element_by_class_name("sh-dr__prs")
    go.click()
    clickPrices = driver.find_element_by_css_selector(".vkYnff")
