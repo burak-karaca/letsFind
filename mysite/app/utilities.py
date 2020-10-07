@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,8 +9,10 @@ from selenium.common.exceptions import TimeoutException
 
 def fetch_data(data,minPrice,maxPrice):
    PATH = "C:\Program Files (x86)\chromedriver.exe"
-   driver = webdriver.Chrome(PATH)
-
+   options = Options()
+   options.add_argument('--headless')
+   options.add_argument('--disable-gpu')  # Last I checked this was necessary.
+   driver = webdriver.Chrome(PATH, chrome_options=options)
    driver.get("https://www.google.com/shopping")
    search = driver.find_element_by_name("q")
    search.send_keys(data)
@@ -40,13 +43,22 @@ def fetch_data(data,minPrice,maxPrice):
    # except:
    #    pass
 
-   time.sleep(1)
+
    elements = [c.text for c in driver.find_elements_by_css_selector(".A2sOrd")]
    prices = [b.text for b in driver.find_elements_by_css_selector(".Nr22bf")]
    shop = [a.text for a in driver.find_elements_by_css_selector(".a3H7pd")]
    links = [my_elem.get_attribute("href") for my_elem in driver.find_elements_by_css_selector(".shntl")]
    images = [img_src.get_attribute("src") for img_src in driver.find_elements_by_xpath("//div[@class='MUQY0']/img")]
 
+   # try:
+   #     pricefilterLinks = [my_elem.get_attribute("href") for my_elem in driver.find_elements_by_css_selector(".vjtvke")]
+   #     el = wait.until(ExpectedConditions.elementToBeClickable(By.CSS_SELECTOR("cancelRegister")));
+   #     if
+   # try:
+   #    priceSelection = [y.text for y in driver.find_elements_by_css_selector(".n3Kkaf")]
+   #    pricefilterLinks = [my_elem.get_attribute("href") for my_elem in driver.find_elements_by_css_selector(".vjtvke")]
+   # except:
+   #    pass
    imagesOutput = len(images)
    elementOutput = len(elements)
    shopOutput = len(shop)
@@ -74,6 +86,7 @@ def fetch_data(data,minPrice,maxPrice):
       print("nothing to show")
 
 
+
    x = list(zip(elements, prices, shop, links, images))
    ls = []
    for i in x:
@@ -83,7 +96,11 @@ def fetch_data(data,minPrice,maxPrice):
       dc['shop'] = i[2]
       dc['link'] = i[3]
       dc['images'] = i[4]
+      # dc['priceSelection'] = i[5]
+      # dc['pricefilterLinks'] = i[6]
       ls.append(dc)
+
+
    return ls
 
 

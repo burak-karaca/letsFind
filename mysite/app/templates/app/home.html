@@ -218,11 +218,15 @@
                 </div>
             </li>
         </ul>
-
+    <div>
+    {%for i in context %}
+        <a href="{{i.pricefilterLinks}}">{{i.priceSelection}}</a>
+        {%endfor%}
+    </div>
     </div>
     {% for i in context %}
     <ul class="list-group" id="product">
-        <li class="list-group-item" id="products" style="z-index: -1">
+        <li class="list-group-item" id="products" style="">
             <a href="{{i.link}}"><img src="{{i.images}}"></a>
             <a href="{{i.link}}"><span id="item">{{i.element}}</span></a>
             <a href="{{i.link}}" id="link" class="btn btn-primary">{{i.shop}}</a>

@@ -81,8 +81,8 @@ html{
     border-top-right-radius: 15px;
 }
 .list-group-item img{
-    width: 150px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
 }
 
 #item{
@@ -161,4 +161,7 @@ html{
 
 .nav-link{
     font-size: 2.3rem;
+}
+.container{
+    width: 1240px;
 }
