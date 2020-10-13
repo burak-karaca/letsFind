@@ -12,6 +12,7 @@ def home(request):
             txt = form.cleaned_data.get('product')
             price1 = form.cleaned_data.get('min_price')
             price2 = form.cleaned_data.get('max_price')
+
             #print('Text {txt}, Min Price {price1}, Max Price {price2}')
             ls = fetch_data(txt,price1,price2)
             #print(ls)
