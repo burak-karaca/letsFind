@@ -2,18 +2,26 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import time
+
 
 
 def fetch_data(data,minPrice,maxPrice):
    PATH = "C:\Program Files (x86)\chromedriver.exe"
    options = Options()
    options.add_argument('--headless')
-   options.add_argument('--disable-gpu')  # Last I checked this was necessary.
+   options.add_argument('--disable-gpu')
    driver = webdriver.Chrome(PATH, chrome_options=options)
    driver.get("https://www.google.com/shopping")
    search = driver.find_element_by_name("q")
    search.send_keys(data)
    search.send_keys(Keys.RETURN)
+
+   # featuresItemListPrices = [my_elem.text for my_elem in driver.find_elements_by_css_selector(".n3Kkaf")]
+   # print(featuresItemListPrices)
+   # featuresItemListPricesLinks = [my_elemmm.get_attribute("href") for my_elemmm in driver.find_elements_by_css_selector(".vjtvke")]
+   # print(featuresItemListPricesLinks)
+
    # try:
    #    minim = driver.find_element_by_name("lower")
    #    minim.send_keys(minPrice)
@@ -40,49 +48,74 @@ def fetch_data(data,minPrice,maxPrice):
    # except:
    #    pass
 
-   elements = [c.text for c in driver.find_elements_by_css_selector(".A2sOrd")]
-   prices = [b.text for b in driver.find_elements_by_css_selector(".Nr22bf")]
-   shop = [a.text for a in driver.find_elements_by_css_selector(".a3H7pd")]
-   links = [my_elem.get_attribute("href") for my_elem in driver.find_elements_by_css_selector(".shntl")]
-   images = [img_src.get_attribute("src") for img_src in driver.find_elements_by_xpath("//div[@class='MUQY0']/img")]
+   def getelements():
 
-   imagesOutput = len(images)
-   elementOutput = len(elements)
-   shopOutput = len(shop)
-   linksOutput = len(links)
+      elements = [c.text for c in driver.find_elements_by_css_selector(".A2sOrd")]
+      prices = [b.text for b in driver.find_elements_by_css_selector(".Nr22bf")]
+      shop = [a.text for a in driver.find_elements_by_css_selector(".a3H7pd")]
+      links = [my_elem.get_attribute("href") for my_elem in driver.find_elements_by_css_selector(".shntl")]
+      images = [img_src.get_attribute("src") for img_src in driver.find_elements_by_xpath("//div[@class='MUQY0']/img")]
 
-   if elementOutput == 0:
-      elements = [cc.text for cc in driver.find_elements_by_css_selector(".xsRiS")]
-   if shopOutput == 0:
-      shop = [aa.text for aa in driver.find_elements_by_css_selector(".shntl")]
-   if linksOutput == 0:
-      links = [my_elemm.get_attribute("href") for my_elemm in driver.find_elements_by_css_selector("a.shntl")]
-   if imagesOutput == 0:
-      images = [img_srcc.get_attribute("src") for img_srcc in driver.find_elements_by_css_selector((".TL92Hc"))]
+      imagesOutput = len(images)
+      elementOutput = len(elements)
+      shopOutput = len(shop)
+      linksOutput = len(links)
 
+      if elementOutput == 0:
+         elements = [cc.text for cc in driver.find_elements_by_css_selector(".xsRiS")]
+         shop = [aa.text for aa in driver.find_elements_by_css_selector(".shntl")]
+         links = [my_elemm.get_attribute("href") for my_elemm in driver.find_elements_by_css_selector("a.shntl")]
+         images = [img_srcc.get_attribute("src") for img_srcc in driver.find_elements_by_css_selector((".TL92Hc"))]
+      return elements,prices,shop,links,images
+   p1 = getelements()
 
+   l1 = [x for x in p1[0]]
+   l2 = [x for x in p1[1]]
+   l3 = [x for x in p1[2]]
+   l4 = [x for x in p1[3]]
+   l5 = [x for x in p1[4]]
 
-   x = list(zip(elements, prices, shop, links, images))
+   page= driver.find_elements_by_css_selector(".fl")
+   pageOutput = len(page)
+
+   for abc in range(pageOutput):
+      try:
+         page = driver.find_elements_by_css_selector(".fl")
+         pageOutput = len(page)
+         page[abc].click()
+         p1 = getelements()
+         if len(p1) > 1:
+            for x in p1[0]:
+               l1.append(x)
+            for x in p1[1]:
+               l2.append(x)
+            for x in p1[2]:
+               l3.append(x)
+            for x in p1[3]:
+               l4.append(x)
+            for x in p1[4]:
+               l5.append(x)
+      except:
+         pass
+
+   output = set()
+   for x in l3:
+      output.add(x)
+   sortfilteredLinks = sorted(output)
+   print(sortfilteredLinks)
+
+   x = list(zip(l1, l2, l3, l4, l5,sortfilteredLinks))
    ls = []
    for i in x:
       dc = {}
-      dc['element'] = i[0]
+      dc['elements'] = i[0]
       dc['prices'] = i[1]
       dc['shop'] = i[2]
-      dc['link'] = i[3]
+      dc['links'] = i[3]
       dc['images'] = i[4]
+      dc['sortfilteredLinks'] = i[5]
       ls.append(dc)
 
 
-   return ls
 
-def getAdditionalFeatures():
-   try:
-      pricefilterLinks = [my_elem.get_attribute("href") for my_elem in driver.find_elements_by_css_selector(".vjtvke")]
-      el = wait.until(ExpectedConditions.elementToBeClickable(By.CSS_SELECTOR("cancelRegister")));
-      if el is True:
-         print("TRUE")
-      else:
-         print("False")
-   except:
-       print("couldnt catch")
+   return ls

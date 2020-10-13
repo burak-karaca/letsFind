@@ -44,6 +44,7 @@
         </div>
         <div class="input-field third-wrap">
             <button class="btn btn-success" id="buton" type="submit"><i class="fas fa-search"></i></button>
+            {{form.field_name}}
         </div>
     </form>
     <!-- Breadcrumbs -->
@@ -218,24 +219,26 @@
             </div>
         </li>
     </ul>
-    <!--    <div>-->
-    <!--    {%for a in context %}-->
-    <!--        <a href="">{{a.priceHeader}}</a>-->
-    <!--        <a href="{{a.pricefilterLinks}}">{{a.priceSelection}}</a>-->
-    <!--        {%endfor%}-->
-    <!--    </div>-->
+        <div>
+        {%for a in context %}
+<!--            <a href="">{{a.priceHeader}}</a>-->
+            <ul class="featuresoftheproducts">
+                <li><a>{{a.sortfilteredLinks}}</a></li>
+            </ul>
+
+            {%endfor%}
+        </div>
 </div>
 {% for i in context %}
 <ul class="list-group" id="product">
     <li class="list-group-item" id="products" style="">
-        <div class="image"><a href="{{i.link}}"><img src="{{i.images}}"></a></div>
-        <div class="itemContainer">    <a href="{{i.link}}"><span id="item">{{i.element}}</span></a>
+        <div class="image"><a href="{{i.links}}"><img src="{{i.images}}"></a></div>
+        <div class="itemContainer">    <a href="{{i.links}}"><span id="item">{{i.elements}}</span></a>
         </div>
-
     </li>
     <div class="priceandlink">
-        <p><a href="{{i.link}}"><span id="price" class="btn btn-primary">{{i.prices}}</span></a></p>
-        <p><a href="{{i.link}}" id="link" class="btn btn-primary">{{i.shop}}</a></p>
+        <p><a href="{{i.links}}"><span id="price" class="btn btn-primary">{{i.prices}}</span></a></p>
+        <p><a href="{{i.links}}" id="link" class="btn btn-primary">{{i.shop}}</a></p>
     </div>
 </ul>
 
