@@ -82,7 +82,8 @@
 </nav>
 
 
-<div class="container">
+
+<div class="mainContainer">
     <div class="" id="basicExampleNav1"
     <!-- Right -->
     <ul class="featuredItems">
@@ -219,30 +220,37 @@
             </div>
         </li>
     </ul>
-        <div>
-        {%for a in context %}
-<!--            <a href="">{{a.priceHeader}}</a>-->
-            <ul class="featuresoftheproducts">
-                <li><a>{{a.sortfilteredLinks}}</a></li>
-            </ul>
-
-            {%endfor%}
-        </div>
-</div>
-{% for i in context %}
-<ul class="list-group" id="product">
-    <li class="list-group-item" id="products" style="">
-        <div class="image"><a href="{{i.links}}"><img src="{{i.images}}"></a></div>
-        <div class="itemContainer">    <a href="{{i.links}}"><span id="item">{{i.elements}}</span></a>
-        </div>
-    </li>
-    <div class="priceandlink">
-        <p><a href="{{i.links}}"><span id="price" class="btn btn-primary">{{i.prices}}</span></a></p>
-        <p><a href="{{i.links}}" id="link" class="btn btn-primary">{{i.shop}}</a></p>
     </div>
-</ul>
+<!--
+-->
+    <div class="featuresoftheproducts">
+        <h2>E-SHOPS</h2>
+        <ul class="">
+            {% for a in context %}
+            <li>
+                {{a.sortfilteredLinks}}
+            </li>
+            {%endfor%}
+        </ul>
+    </div>
+<div class="containerofItems">
 
-{% endfor %}
+    {% for i in context %}
+    <ul class="list-group" id="product">
+        <li class="list-group-item" id="products" style="">
+            <div class="image"><a href="{{i.links}}"><img src="{{i.images}}"></a></div>
+            <div class="itemContainer"><a href="{{i.links}}"><span id="item">{{i.elements}}</span></a>
+            </div>
+        </li>
+        <div class="priceandlink">
+            <p><a href="{{i.links}}"><span id="price" class="btn btn-primary">{{i.prices}}</span></a></p>
+            <p><a href="{{i.links}}" id="link" class="btn btn-primary">{{i.shop}}</a></p>
+        </div>
+    </ul>
+    {% endfor %}
+
+</div>
+
 </div>
 
 

@@ -97,13 +97,10 @@ def fetch_data(data,minPrice,maxPrice):
                l5.append(x)
       except:
          pass
-
    output = set()
    for x in l3:
       output.add(x)
    sortfilteredLinks = sorted(output)
-   print(sortfilteredLinks)
-
    x = list(zip(l1, l2, l3, l4, l5,sortfilteredLinks))
    ls = []
    for i in x:
@@ -115,7 +112,5 @@ def fetch_data(data,minPrice,maxPrice):
       dc['images'] = i[4]
       dc['sortfilteredLinks'] = i[5]
       ls.append(dc)
-
-
 
    return ls
