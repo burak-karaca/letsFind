@@ -63,6 +63,9 @@ html{
     padding: 2rem;
     border: 0;
 }
+.mainContainer{
+    width: 100%;
+}
 .list-group{
     width:23%;
     float: left;
@@ -95,7 +98,6 @@ html{
     letter-spacing: 1px;
     margin: 0 0 10px;
     text-transform: uppercase;
-
 }
 #price{
     font: 700 13px "PT Sans",Helvetica,sans-serif;
@@ -159,7 +161,7 @@ html{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
     position: relative;
-    left: -1%;
+
 }
 .featuredItems li{
     float: left;
@@ -167,16 +169,29 @@ html{
     padding-left:1.5rem;
 }
 .featuredItems li:first-child{
-    margin-left:4rem;
+    margin-left:22%;
 }
 
 .nav-link{
     font-size: 2.3rem;
 }
-.container{
-    width: 1240px;
-}
-.featuresoftheproducts li{
+
+.featuresoftheproducts{
+    margin-top: 1%;
+    width: 20%;
     float: left;
+}
+.containerofItems{
+    width: 60%;
+    float: left;
+}
+.featuresoftheproducts ul li{
+    padding-bottom: 10px;
+    width: 100%;
+    font-size: 1.5rem;
+    padding-left: 20%;
     list-style-type: none;
+}
+.featuresoftheproducts h2{
+    margin-left: 20%;
 }

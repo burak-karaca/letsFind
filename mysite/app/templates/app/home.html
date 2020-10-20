@@ -19,18 +19,15 @@
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-light">
-
     <a class="navbar-brand" href="#!">
         <img src="{% static 'app/logo.png' %}" height="30" alt="mdb logo" style="width: 175px;height: 75px;">
     </a>
 
-    <!-- Collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav1"
             aria-controls="basicExampleNav1" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Breadcrumbs -->
     <form method="post">
         {% csrf_token %}
         <div class="input-field first-wrap">
@@ -45,11 +42,12 @@
         <div class="input-field third-wrap">
             <button class="btn btn-success" id="buton" type="submit"><i class="fas fa-search"></i></button>
             {{form.field_name}}
+
         </div>
     </form>
-    <!-- Breadcrumbs -->
 
-    <!-- Links -->
+
+
     <div class="collapse navbar-collapse" id="basicExampleNav1">
 
         <!-- Right -->
@@ -82,7 +80,8 @@
 </nav>
 
 
-<div class="container">
+
+<div class="mainContainer">
     <div class="" id="basicExampleNav1"
     <!-- Right -->
     <ul class="featuredItems">
@@ -219,46 +218,84 @@
             </div>
         </li>
     </ul>
-        <div>
-        {%for a in context %}
-<!--            <a href="">{{a.priceHeader}}</a>-->
-            <ul class="featuresoftheproducts">
-                <li><a>{{a.sortfilteredLinks}}</a></li>
-            </ul>
-
-            {%endfor%}
-        </div>
-</div>
-{% for i in context %}
-<ul class="list-group" id="product">
-    <li class="list-group-item" id="products" style="">
-        <div class="image"><a href="{{i.links}}"><img src="{{i.images}}"></a></div>
-        <div class="itemContainer">    <a href="{{i.links}}"><span id="item">{{i.elements}}</span></a>
-        </div>
-    </li>
-    <div class="priceandlink">
-        <p><a href="{{i.links}}"><span id="price" class="btn btn-primary">{{i.prices}}</span></a></p>
-        <p><a href="{{i.links}}" id="link" class="btn btn-primary">{{i.shop}}</a></p>
-    </div>
-</ul>
-
-{% endfor %}
 </div>
 
+<div class="featuresoftheproducts">
+    <h2>E-SHOPS</h2>
+    <ul class="">
+        {% for a in eshops %}
+        <li>
+            <form method="post">
+                <span class="eshoptexts">{{a.sortfilteredLinks}}</span>
+                {% csrf_token %}
+                <span id="check">{{form.checkbox}}</span>
+            </form>
+        </li>
+        {%endfor%}
+    </ul>
+</div>
+<div class="containerofItems">
 
+    {% for i in context %}
 
+    <ul class="list-group" id="product">
+        <li class="list-group-item" id="products" style="">
+            <div class="image"><a href="{{i.links}}"><img src="{{i.images}}"></a></div>
+            <div class="itemContainer"><a href="{{i.links}}"><span id="item">{{i.elements}}</span></a>
+            </div>
+        </li>
+        <div class="priceandlink">
+            <p><a href="{{i.links}}"><span id="price" class="btn btn-primary">{{i.prices}}</span></a></p>
+            <p><a href="{{i.links}}" id="link" class="btn btn-primary shops">{{i.shop}}</a></p>
+        </div>
+    </ul>
 
+    {% endfor %}
 
-
-
-
-
-
-
-
+</div>
+</div>
 <script src="https://kit.fontawesome.com/18add7bb34.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<script>
+    const checkboxes = Array.from(document.getElementsByClassName('checkbox'));
+    const divElements = Array.from(document.getElementsByClassName('list-group'));
+    const shops = Array.from(document.getElementsByClassName('shops'));
+    const Arr = [];
+    const arrofString = [];
+    for(var i = 0; i<shops.length;i++){
+        arrofString.push(shops[i].textContent)
+    }
+    checkboxes.forEach((element,index) => {
+        const textofIndex = Array.from(document.getElementsByClassName('eshoptexts')[index].textContent);
+        Arr.push(textofIndex.join(''))
+        element.addEventListener('click', () => {
+            let count=0
+            checkboxes.forEach((element,index)=>{
+                if(element.checked){
+                    arrofString.forEach((currentShop,currentShopIndex) => {
+                        if(currentShop === Arr[index])
+                        divElements[currentShopIndex].style.display = 'block';
+                    })
+                }
+                if(!element.checked){
+                        arrofString.forEach((currentShop,currentShopIndex) =>{
+                        if(currentShop === Arr[index])
+                        divElements[currentShopIndex].style.display = 'none';
+                    })
+                    count++
+                }
+                console.log(checkboxes.length , count)
+                if(checkboxes.length==count){
+                    arrofString.forEach((currentShop,currentShopIndex) =>{
+                        divElements[currentShopIndex].style.display = 'block';
+                    })
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>
