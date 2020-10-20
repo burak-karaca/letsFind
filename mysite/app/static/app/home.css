@@ -98,7 +98,6 @@ html{
     letter-spacing: 1px;
     margin: 0 0 10px;
     text-transform: uppercase;
-
 }
 #price{
     font: 700 13px "PT Sans",Helvetica,sans-serif;
@@ -178,20 +177,19 @@ html{
 }
 
 .featuresoftheproducts{
-    margin-top: %5;
+    margin-top: 1%;
     width: 20%;
     float: left;
 }
 .containerofItems{
     width: 60%;
     float: left;
-
 }
 .featuresoftheproducts ul li{
     padding-bottom: 10px;
     width: 100%;
     font-size: 1.5rem;
-    margin-left: 20%;
+    padding-left: 20%;
     list-style-type: none;
 }
 .featuresoftheproducts h2{
