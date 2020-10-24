@@ -187,11 +187,22 @@ html{
 }
 .featuresoftheproducts ul li{
     padding-bottom: 10px;
-    width: 100%;
+    width: 80%;
     font-size: 1.5rem;
-    padding-left: 20%;
+    margin-left: 10%;
     list-style-type: none;
 }
 .featuresoftheproducts h2{
-    margin-left: 20%;
+    margin-left: 10%;
+}
+.checkbox{
+    float: right;
+
+}
+input[type=checkbox] {
+    margin-top: 2%;
+    transform: scale(1.5);
+}
+.prices:hover .currencydiv{
+  display: block;
 }
