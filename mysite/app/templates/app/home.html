@@ -245,14 +245,15 @@
             </div>
         </li>
         <div class="priceandlink">
+            <p><a href="{{i.links}}" id="link" class="btn btn-primary shops">{{i.shop}}</a></p>
             <p><a href="{{i.links}}"><span id="price" class="btn btn-primary prices">{{i.prices}}</span></a></p>
-            <div>
-                <ul class="currencydiv" style="display: none;">
-                    <li class="currencyexchange""></li>
-                    <li class="secondcurrencyexchange"></li>
+            <div class="currencydiv" style="visibility: hidden;">
+                <ul>
+                    <p class="euroanddollar"><span>EURO <span class="currencyexchange""></span></span></p>
+                    <p  class="euroanddollar"><span>DOLLAR <span class="secondcurrencyexchange"></span></span></p>
                 </ul>
             </div>
-            <p><a href="{{i.links}}" id="link" class="btn btn-primary shops">{{i.shop}}</a></p>
+
         </div>
     </ul>
 
@@ -344,10 +345,10 @@
         const prices = Array.from(document.getElementsByClassName('prices'));
         prices.forEach((el,index)=>{
             el.addEventListener('mouseover',(elem)=>{
-                pricesdiv[index].style.display = 'block';
+                pricesdiv[index].style.visibility = 'visible';
             });
             el.addEventListener('mouseleave',(elem)=>{
-                pricesdiv[index].style.display = 'none';
+                pricesdiv[index].style.visibility = 'hidden';
             })
         })
         console.log(pricesdiv,prices);
