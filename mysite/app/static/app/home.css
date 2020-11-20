@@ -194,6 +194,16 @@ html{
 }
 .featuresoftheproducts h2{
     margin-left: 10%;
+    width: 80%;
+    background-color: #F3A847;
+    color: white;
+    padding:10px;
+    border-top-right-radius: 15px;
+}
+.featuresoftheproducts h2:hover{
+    background-color: white;
+    color: #F3A847;
+    transition: background-color 1s;
 }
 .checkbox{
     float: right;
