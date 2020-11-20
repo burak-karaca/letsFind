@@ -4,13 +4,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 
-
-
 def fetch_data(data,minPrice,maxPrice):
    PATH = "C:\Program Files (x86)\chromedriver.exe"
    options = Options()
-   options.add_argument('--headless')
-   options.add_argument('--disable-gpu')
+   # options.add_argument('--headless')
+   # options.add_argument('--disable-gpu')
    driver = webdriver.Chrome(PATH, chrome_options=options)
    driver.get("https://www.google.com/shopping")
    search = driver.find_element_by_name("q")
@@ -22,16 +20,26 @@ def fetch_data(data,minPrice,maxPrice):
    # featuresItemListPricesLinks = [my_elemmm.get_attribute("href") for my_elemmm in driver.find_elements_by_css_selector(".vjtvke")]
    # print(featuresItemListPricesLinks)
 
+   mcu = [i for i in driver.find_elements_by_css_selector('.vjtvke')]
+   mcuText = [i.text for i in driver.find_elements_by_css_selector('.vjtvke')]
    try:
-      minim = driver.find_element_by_name("lower")
-      minim.send_keys(minPrice)
-      maxim = driver.find_element_by_name("upper")
-      maxim.send_keys(maxPrice)
-      time.sleep(1)
-      go = driver.find_element_by_class_name("sh-dr__prs")
-      go.click()
+      for i in range(len(mcuText)):
+         if 'Mikrokontrolery' in mcuText[i]:
+            mcu[i].click()
+         else:
+            pass
    except:
       pass
+   # try:
+   #    minim = driver.find_element_by_name("lower")
+   #    minim.send_keys(minPrice)
+   #    maxim = driver.find_element_by_name("upper")
+   #    maxim.send_keys(maxPrice)
+   #    time.sleep(1)
+   #    go = driver.find_element_by_class_name("sh-dr__prs")
+   #    go.click()
+   # except:
+   #    pass
    # try:
    #    clickPrices = driver.find_element_by_css_selector(".vkYnff")
    #    clickPrices.click()
@@ -51,7 +59,7 @@ def fetch_data(data,minPrice,maxPrice):
    def getelements():
 
       elements = [c.text for c in driver.find_elements_by_css_selector(".A2sOrd")]
-      prices = [b.text for b in driver.find_elements_by_css_selector(".Nr22bf")]
+      prices = [b.text for b in driver.find_elements_by_css_selector(".h1Wfwb")]
       shop = [a.text for a in driver.find_elements_by_css_selector(".a3H7pd")]
       links = [my_elem.get_attribute("href") for my_elem in driver.find_elements_by_css_selector("a.shntl")]
       images = [img_src.get_attribute("src") for img_src in driver.find_elements_by_xpath("//div[@class='MUQY0']/img")]
@@ -60,7 +68,10 @@ def fetch_data(data,minPrice,maxPrice):
       elementOutput = len(elements)
       shopOutput = len(shop)
       linksOutput = len(links)
+      pricesOutput = len(prices)
 
+      if pricesOutput == 0:
+         prices = [b.text for b in driver.find_elements_by_css_selector(".QIrs8")]
       if elementOutput == 0:
          elements = [cc.text for cc in driver.find_elements_by_css_selector(".xsRiS")]
       if shopOutput == 0:
@@ -69,7 +80,26 @@ def fetch_data(data,minPrice,maxPrice):
          links = [my_elemm.get_attribute("href") for my_elemm in driver.find_elements_by_css_selector("a.shntl")]
       if imagesOutput == 0:
          images = [img_srcc.get_attribute("src") for img_srcc in driver.find_elements_by_css_selector((".TL92Hc"))]
-      return elements,prices,shop,links,images
+
+      elementsUpper = []
+      filterSearch = data.upper().split()
+      for i in elements:
+         elementsUpper.append(i.upper())
+      finalIndexing = [elementsUpper.index(str) for str in elementsUpper if any(sub in str for sub in filterSearch)]
+      newElements = []
+      newPrices = []
+      newShop = []
+      newLinks = []
+      newImages = []
+
+      for i in finalIndexing:
+         newElements.append(elements[i])
+         newPrices.append(prices[i])
+         newShop.append(shop[i])
+         newLinks.append(links[i])
+         newImages.append(images[i])
+
+      return newElements,newPrices,newShop,newLinks,newImages
 
    p1 = getelements()
 
