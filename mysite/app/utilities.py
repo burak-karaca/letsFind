@@ -20,18 +20,6 @@ def fetch_data(data,minPrice,maxPrice):
    # featuresItemListPricesLinks = [my_elemmm.get_attribute("href") for my_elemmm in driver.find_elements_by_css_selector(".vjtvke")]
    # print(featuresItemListPricesLinks)
 
-   try:
-      minim = driver.find_element_by_name("lower")
-      minim.send_keys(minPrice)
-      maxim = driver.find_element_by_name("upper")
-      maxim.send_keys(maxPrice)
-      time.sleep(1)
-      go = driver.find_element_by_class_name("sh-dr__prs")
-      go.click()
-   except:
-      pass
-
-
    mcu = [i for i in driver.find_elements_by_css_selector('.vjtvke')]
    mcuText = [i.text for i in driver.find_elements_by_css_selector('.vjtvke')]
    try:
@@ -43,6 +31,16 @@ def fetch_data(data,minPrice,maxPrice):
    except:
       pass
 
+   try:
+      minim = driver.find_element_by_name("lower")
+      minim.send_keys(minPrice)
+      maxim = driver.find_element_by_name("upper")
+      maxim.send_keys(maxPrice)
+      time.sleep(1)
+      go = driver.find_element_by_class_name("sh-dr__prs")
+      go.click()
+   except:
+      pass
 
    # try:
    #    clickPrices = driver.find_element_by_css_selector(".vkYnff")
@@ -155,7 +153,7 @@ def fetch_data(data,minPrice,maxPrice):
 
 
    output = set()
-   for x in l3:
+   for x in newShop:
       output.add(x)
    sortfilteredLinks = sorted(output)
    x = list(zip(newElements, newPrices, newShop, newLinks, newImages))
